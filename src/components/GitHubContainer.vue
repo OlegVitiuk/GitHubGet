@@ -36,7 +36,6 @@ export default {
         }
       } else {
         const accessToken = localStorage.getItem("accessToken");
-        console.log(accessToken);
 
         if (!accessToken) {
           window.location.replace(
@@ -57,7 +56,12 @@ export default {
     },
 
     getUserData: async function() {
-      const data = await Promise.all([getUserData(), getUserRepos()]);
+      const accessToken = localStorage.getItem("accessToken");
+
+      const data = await Promise.all([
+        getUserData(accessToken),
+        getUserRepos(accessToken)
+      ]);
       console.log(data, "data");
     }
   }
