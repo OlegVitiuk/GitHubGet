@@ -21,7 +21,7 @@ export default {
 
         try {
           const res = await axios.post(
-            "https://github.com/login/oauth/access_token",
+            "https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token",
             {
               client_id: clientId,
               client_secret: clientSecret,
@@ -46,7 +46,7 @@ export default {
     },
 
     getUserData: async () => {
-      const data = await Promise.all([getUserData]);
+      const data = await Promise.all([getUserData, getUserRepos]);
       console.log(data, "data");
     }
   }
