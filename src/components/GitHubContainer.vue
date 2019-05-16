@@ -90,7 +90,7 @@ export default {
       ]);
       this.isDataLOading(false);
       const { avatar_url, login } = res[0].data;
-      this.userInfo = { repos: data[1], avatar_url, login };
+      this.userInfo = { repos: res[1].data, avatar_url, login };
       console.log(res, "data");
     }
   }
