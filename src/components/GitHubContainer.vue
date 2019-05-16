@@ -47,7 +47,7 @@ export default {
       }
     },
 
-    parseToken: textToParse => {
+    parseToken: function() {
       const token = textToParse.match(/access_token=(.*)&scope/);
       localStorage.setItem("accessToken", token[1]);
       this.getUserData();
