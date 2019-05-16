@@ -16,9 +16,10 @@ export default {
     setAccessToken: async function() {
       const params = new URLSearchParams(window.location.search);
 
+      console.log("YAHOO");
       if (params.has("code")) {
         const code = params.get("code");
-        params.delete("code");
+        window.location.href = "https://salty-waters-21723.herokuapp.com";
 
         try {
           const res = await axios.post(
@@ -51,11 +52,14 @@ export default {
     parseToken: textToParse => {
       const token = textToParse.match(/access_token=(.*)&scope/);
       localStorage.setItem("accessToken", token[1]);
+      this.getUserData();
     },
 
     getUserData: async function() {
-      const data = await axios.get("https://api.github.com/user", {
-        access_token: localStorage.getItem("accessToken")
+      const data = await axios.post("https://api.github.com/user", null, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("accessToken")
+        }
       });
       console.log(data, "data");
     }
