@@ -43,6 +43,7 @@ export default {
             `https://github.com/login/oauth/authorize?client_id=${clientId}`
           );
         } else {
+          console.log("gggg");
           this.getUserData();
         }
       }
@@ -51,6 +52,7 @@ export default {
     parseToken: function(textToParse) {
       const token = textToParse.match(/access_token=(.*)&scope/);
       localStorage.setItem("accessToken", token[1]);
+      console.log(token[1], "TKEN");
       this.getUserData();
     },
 
