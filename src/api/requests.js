@@ -1,7 +1,6 @@
 import api from './index';
 
-const getUserData = () => api.post('get');
-
 const getUserRepos = () => api.get('user/repos');
+const getUserData = () => api.get('user');
 
 export { getUserData, getUserRepos };

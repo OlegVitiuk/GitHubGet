@@ -4,7 +4,7 @@
 
 <script>
 import { clientId, clientSecret } from "../config";
-import { getUserData } from "@/api/requests";
+import { getUserData, getUserRepos } from "@/api/requests";
 import axios from "axios";
 
 export default {
@@ -55,11 +55,7 @@ export default {
     },
 
     getUserData: async function() {
-      const data = await axios.get("https://api.github.com/user", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("accessToken")
-        }
-      });
+      const data = await Promise.all([getUserData(), getUserRepos()]);
       console.log(data, "data");
     }
   }
