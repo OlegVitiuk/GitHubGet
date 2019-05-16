@@ -55,7 +55,7 @@ export default {
     },
 
     getUserData: async function() {
-      const data = await axios.post("https://api.github.com/user", null, {
+      const data = await axios.get("https://api.github.com/user", {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("accessToken")
         }
