@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { clientId, clientSecret, redirectUri } from "../config";
+import { clientId, clientSecret } from "../config";
 
 export default {
   data() {
@@ -49,7 +49,7 @@ export default {
   },
   mounted: async () => {
     window.open(
-      `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`
+      `https://github.com/login/oauth/authorize?client_id=${clientId}`
     );
   }
 };
