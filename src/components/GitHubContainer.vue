@@ -18,6 +18,7 @@ export default {
 
       if (params.has("code")) {
         const code = params.get("code");
+        history.replaceState({}, "", "/");
 
         try {
           const res = await axios.post(
@@ -47,7 +48,7 @@ export default {
       }
     },
 
-    parseToken: function() {
+    parseToken: function(textToParse) {
       const token = textToParse.match(/access_token=(.*)&scope/);
       localStorage.setItem("accessToken", token[1]);
       this.getUserData();
