@@ -20,14 +20,16 @@ export default {
         const code = params.get("code");
 
         try {
-          const res = await axios.post(
-            "https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token",
-            {
-              client_id: clientId,
-              client_secret: clientSecret,
-              code
-            }
-          );
+          const res = await axios
+            .post(
+              "https://cors-anywhere.herokuapp.com/https://github.com/login/oauth/access_token",
+              {
+                client_id: clientId,
+                client_secret: clientSecret,
+                code
+              }
+            )
+            .text();
           console.log(res);
           localStorage.setItem("accessToken", res.data.access_token);
         } catch (e) {
