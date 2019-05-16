@@ -16,7 +16,6 @@ export default {
     setAccessToken: async function() {
       const params = new URLSearchParams(window.location.search);
 
-      console.log("YAHOO");
       if (params.has("code")) {
         const code = params.get("code");
         window.location.href = "https://salty-waters-21723.herokuapp.com";
