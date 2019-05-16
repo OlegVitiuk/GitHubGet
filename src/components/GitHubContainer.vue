@@ -18,7 +18,6 @@ export default {
 
       if (params.has("code")) {
         const code = params.get("code");
-        window.location.href = "https://salty-waters-21723.herokuapp.com";
 
         try {
           const res = await axios.post(
