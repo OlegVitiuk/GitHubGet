@@ -42,6 +42,8 @@ export default {
           window.location.replace(
             `https://github.com/login/oauth/authorize?client_id=${clientId}`
           );
+        } else {
+          this.getUserData();
         }
       }
     },
@@ -51,8 +53,10 @@ export default {
       localStorage.setItem("accessToken", token[1]);
     },
 
-    getUserData: async () => {
-      const data = await Promise.all([getUserData(), getUserRepos()]);
+    getUserData: async function() {
+      const data = await axios.get("https://api.github.com/user", {
+        access_token: localStorage.getItem("accessToken")
+      });
       console.log(data, "data");
     }
   }
