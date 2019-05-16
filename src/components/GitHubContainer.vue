@@ -13,7 +13,7 @@ export default {
     this.setAccessToken();
   },
   methods: {
-    setAccessToken: async () => {
+    setAccessToken: async function() {
       const params = new URLSearchParams(window.location.search);
 
       if (params.has("code")) {
