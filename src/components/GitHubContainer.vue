@@ -18,6 +18,7 @@ export default {
 
       if (params.has("code")) {
         const code = params.get("code");
+        params.delete("code");
 
         try {
           const res = await axios.post(
