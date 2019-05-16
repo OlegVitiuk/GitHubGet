@@ -28,7 +28,7 @@ export default {
               code
             }
           );
-          console.log(res.body());
+          console.log(res, "RES");
           localStorage.setItem("accessToken", res.data.access_token);
         } catch (e) {
           console.error(e.message);
