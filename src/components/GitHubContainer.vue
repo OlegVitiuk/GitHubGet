@@ -2,13 +2,13 @@
   <div class="container">
     <div v-if="isDataLoaded">
       <div class="userInfo">
-        <span class="userInfo_name">{{userName}}</span>
-        <img src="avatar_url" class="userInfo_avatar">
+        <span class="userInfo_name">{{userInfo.login}}</span>
+        <img v-bind:src="userInfo.avatar_url" class="userInfo_avatar">
       </div>
       <div class="repos">
         <h3 class="repos_title">Repositories</h3>
-        <div class="repos_container" v-bind:key="repo.id" v-for="repo in userInfo.repos">
-          <div class="repo">{{repo.name}}</div>
+        <div class="repos_container">
+          <div v-bind:key="repo.id" v-for="repo in userInfo.repos" class="repo">{{repo.name}}</div>
         </div>
       </div>
     </div>
@@ -23,19 +23,19 @@ import axios from "axios";
 
 export default {
   name: "GitHubContainer",
-  data: {
+  data: () => ({
     userInfo: {
       login: null,
       avatar_url: null,
       repos: null
     },
     isDataLoaded: false
-  },
+  }),
   mounted: function() {
     this.setAccessToken();
   },
   methods: {
-    isDataLOading: function(value) {
+    setLoader: function(value) {
       this.isDataLoaded = value;
     },
 
@@ -83,12 +83,12 @@ export default {
     getUserData: async function() {
       const accessToken = localStorage.getItem("accessToken");
 
-      this.isDataLOading(true);
+      this.setLoader(false);
       const res = await Promise.all([
         getUserData(accessToken),
         getUserRepos(accessToken)
       ]);
-      this.isDataLOading(false);
+      this.setLoader(true);
       const { avatar_url, login } = res[0].data;
       this.userInfo = { repos: res[1].data, avatar_url, login };
       console.log(res, "data");
@@ -100,7 +100,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container {
-  width: 70%;
+  width: 40%;
   background-color: #001f3f;
   text-align: center;
   vertical-align: center;
@@ -109,6 +109,15 @@ export default {
 .userInfo {
   display: flex;
   margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.repos_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .userInfo_name {
@@ -127,12 +136,12 @@ export default {
 }
 
 .userInfo_avatar {
-  width: 50px;
-  height: 50px;
+  width: 75px;
+  height: 75px;
 }
 .repo {
-  background-color: #dddddd;
+  border: 1px solid #dddddd;
   padding: 15px;
-  border: 2px solid #111111;
+  width: 50%;
 }
 </style>
