@@ -1,5 +1,9 @@
 <template>
   <div class="container">
+    <div class="contacts">
+      <a href="https://github.com/OlegVitiuk">Created By</a>
+      <a href="https://github.com/OlegVitiuk/GitHubGet">Source code</a>
+    </div>
     <div v-if="isDataLoaded">
       <div class="userInfo">
         <span class="userInfo_name">{{userInfo.login}}</span>
@@ -99,6 +103,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.contacts {
+  position: fixed;
+  background-color: #6da9a2;
+  padding: 15px;
+  left: 140px;
+  top: 60px;
+}
 .container {
   width: 40%;
   background-color: #001f3f;
