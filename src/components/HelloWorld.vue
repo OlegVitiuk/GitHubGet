@@ -39,12 +39,18 @@
 </template>
 
 <script>
+import { clientId, clientSecret, redirectUri } from "../config";
+
 export default {
-  name: "HelloWorld",
   data() {
     return {
       msg: "Welcome to Your Vue.js App"
     };
+  },
+  mounted: async () => {
+    fetch(
+      `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}`
+    );
   }
 };
 </script>
