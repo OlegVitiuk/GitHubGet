@@ -4,6 +4,8 @@
 
 <script>
 import { clientId, clientSecret } from "../config";
+import { getUserData } from "@/api/requests";
+import axios from "axios";
 
 export default {
   name: "GitHubContainer",
@@ -41,6 +43,11 @@ export default {
           );
         }
       }
+    },
+
+    getUserData: async () => {
+      const data = await Promise.all([getUserData]);
+      console.log(data, "data");
     }
   }
 };
