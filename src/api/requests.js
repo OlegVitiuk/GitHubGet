@@ -1,7 +1,7 @@
-import axios from 'axios';
+import api from './index';
 
-const getUserData = axios.post('get');
+const getUserData = () => api.post('get');
 
-const getUserRepos = axios.get('user/repos');
+const getUserRepos = () => api.get('user/repos');
 
 export { getUserData, getUserRepos };

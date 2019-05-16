@@ -46,7 +46,7 @@ export default {
     },
 
     getUserData: async () => {
-      const data = await Promise.all([getUserData, getUserRepos]);
+      const data = await Promise.all([getUserData(), getUserRepos()]);
       console.log(data, "data");
     }
   }
