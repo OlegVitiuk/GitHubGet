@@ -29,7 +29,7 @@ export default {
           console.log(res);
           localStorage.setItem("accessToken", res.data.access_token);
         } catch (e) {
-          console.err(e.message);
+          console.error(e.message);
         }
       } else {
         const accessToken = localStorage.getItem("accessToken");
