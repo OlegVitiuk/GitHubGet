@@ -29,7 +29,7 @@ export default {
             }
           );
           console.log(res, "RES");
-          localStorage.setItem("accessToken", res.data.access_token);
+          this.parseToken(res.data);
         } catch (e) {
           console.error(e.message);
         }
@@ -43,6 +43,11 @@ export default {
           );
         }
       }
+    },
+
+    parseToken: textToParse => {
+      const token = textToParse.match(/access_token=(.*)&scope/);
+      localStorage.setItem("accessToken", token[1]);
     },
 
     getUserData: async () => {
